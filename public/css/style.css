@@ -1,0 +1,435 @@
+/* ===========================================================
+   Design tokens
+   Subject: a URL shortener — the core action is compressing a
+   long link into a short claim-check you can hand off. The
+   "stub" (like a luggage tag / ticket stub) is the signature
+   element: every shortened link renders as a perforated stub.
+   =========================================================== */
+:root {
+  --bg: #F3F4F6;
+  --surface: #FFFFFF;
+  --border: #E2E4EA;
+  --text: #12141A;
+  --muted: #6B7280;
+  --accent: #4F46E5;
+  --accent-dark: #3F37C9;
+  --accent-soft: #EEF0FF;
+  --mint: #10B981;
+  --mint-soft: #E7FBF3;
+  --danger: #E11D48;
+  --danger-soft: #FDECEF;
+
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(18, 20, 26, 0.04), 0 8px 24px rgba(18, 20, 26, 0.06);
+
+  --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+button, input {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- top bar ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+.brand .brand-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-chip {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.user-chip strong { color: var(--text); }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.05s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:active { transform: scale(0.98); }
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+.btn-primary:hover { background: var(--accent-dark); }
+.btn-primary:disabled { background: #C7C9F5; cursor: not-allowed; }
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+.btn-danger-text {
+  background: transparent;
+  color: var(--danger);
+  border: none;
+  padding: 6px 8px;
+  font-size: 0.85rem;
+}
+.btn-danger-text:hover { text-decoration: underline; }
+
+.btn-block { width: 100%; }
+
+/* ---------- auth pages ---------- */
+.auth-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 36px 32px;
+}
+
+.auth-card .brand {
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.auth-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 6px;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0 0 26px;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  font-size: 0.83rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.field input {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #FAFAFB;
+  color: var(--text);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.field input:focus {
+  border-color: var(--accent);
+  background: var(--surface);
+  outline: none;
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: 20px;
+}
+
+.form-msg {
+  font-size: 0.85rem;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  display: none;
+}
+
+.form-msg.show { display: block; }
+
+.form-msg.error {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.form-msg.success {
+  background: var(--mint-soft);
+  color: #067A55;
+}
+
+/* ---------- dashboard layout ---------- */
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.page-header {
+  margin-bottom: 28px;
+}
+
+.page-header h1 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  margin: 0 0 4px;
+}
+
+.page-header p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* generator panel */
+.generator {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 36px;
+}
+
+.generator-row {
+  display: flex;
+  gap: 10px;
+}
+
+.generator-row input {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #FAFAFB;
+}
+
+.generator-row input:focus {
+  border-color: var(--accent);
+  background: var(--surface);
+  outline: none;
+}
+
+/* section label */
+.section-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.section-label h2 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.section-label .count {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+/* ---------- stub card: the signature element ----------
+   Styled like a claim-check / ticket stub — a perforated
+   edge separates the "long" side from the "short" claim code,
+   because that's literally what a shortener does: it hands
+   you back a small stub that redeems the full-length item. */
+.stub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.stub {
+  display: flex;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.stub-main {
+  flex: 1;
+  min-width: 0;
+  padding: 16px 18px;
+}
+
+.stub-original {
+  font-size: 0.85rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 8px;
+}
+
+.stub-short {
+  font-family: var(--font-mono);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--accent);
+  word-break: break-all;
+}
+
+.stub-meta {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.stub-perforation {
+  position: relative;
+  width: 0;
+  border-left: 2px dashed var(--border);
+  margin: 10px 0;
+}
+
+.stub-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 16px;
+  min-width: 96px;
+  background: var(--accent-soft);
+}
+
+.stub-copy {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 7px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text);
+  width: 100%;
+}
+.stub-copy:hover { border-color: var(--accent); color: var(--accent); }
+.stub-copy.copied { background: var(--mint-soft); color: #067A55; border-color: var(--mint); }
+
+/* empty state */
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  color: var(--muted);
+}
+
+.empty-state strong {
+  display: block;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+/* loading / skeleton */
+.skeleton {
+  height: 78px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #ECEEF3 25%, #F5F6F9 37%, #ECEEF3 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+@media (max-width: 520px) {
+  .generator-row { flex-direction: column; }
+  .stub { flex-direction: column; }
+  .stub-perforation { display: none; }
+  .stub-actions { flex-direction: row; background: transparent; border-top: 1px dashed var(--border); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+}
