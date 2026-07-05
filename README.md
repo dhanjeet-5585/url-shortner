@@ -147,7 +147,7 @@ GitHub:
 https://github.com/dhanjeet-5585
 
 LinkedIn:
-(Add your LinkedIn profile)
+www.linkedin.com/in/dhanjeet-mishra-52281b31a
 
 ---
 
