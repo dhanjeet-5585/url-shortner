@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config({ path: "D:/url shortner/backend/.env" });
+require("dotenv").config();
 const jwtSecret = process.env.JWT_SECRET;
 
 function checkForAuthentication(req, res, next) {
