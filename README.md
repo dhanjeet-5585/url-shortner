@@ -125,20 +125,7 @@ npm start
 | MONGO_URL | MongoDB Atlas connection string |
 | JWT_SECRET | Secret key used to sign JWT tokens |
 
----
 
-## 📷 Screenshots
-
-Add screenshots here after deployment.
-
-Example:
-
-- Home Page
-- Login
-- Dashboard
-- URL List
-
----
 
 ## 🔮 Future Improvements
 
